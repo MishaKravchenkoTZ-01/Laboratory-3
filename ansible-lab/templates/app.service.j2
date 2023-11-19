@@ -1,0 +1,18 @@
+{#
+TODO: Path to jar should use variables {{ app_dir }}/{{ app_file }}
+TODO: Environment variable for PORT should use value from variable {{ app_port }}
+#}
+
+[Unit]
+Description=third lab
+Requires=network-online.target
+After=network-online.target
+
+[Install]
+WantedBt=multi-user.target
+
+[Service]
+ExecStart=java -jar {{ app_dir }}/{{ app_file }}
+User=mykhailo
+Restart=on-failure
+Environment="PORT={{ app_port }}"
